@@ -18,7 +18,7 @@ class Student extends Person {
     public grade: number;
 
     constructor(name: string, age: number, grade: number) {
-        super(name, age); // Bắt buộc gọi super() để truyền name và age cho Person xử lý
+        super(name, age); 
         this.grade = grade;
     }
 

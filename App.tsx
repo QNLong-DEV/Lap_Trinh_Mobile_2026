@@ -1,11 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-// import './components/Person';
-// import './components/Student'
-// import './components/Car'
-// import './components/BankAccount'
-// import './components/User';
-import './components/Product'
+import './components/tuan1/cau5'
 export default function App() {
   return (
     <View style={styles.container}>
