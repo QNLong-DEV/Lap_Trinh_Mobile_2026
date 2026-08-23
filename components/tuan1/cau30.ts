@@ -26,3 +26,12 @@ class School {
         this.teachers.forEach(t => console.log(`- ${t.name}, ${t.age} tuổi`));
     }
 }
+
+const student = new Student("Long", 21);
+const teacher = new Teacher("Nam", 40);
+
+const school = new School();
+school.addStudent(student);
+school.addTeacher(teacher);
+
+school.displayInfo();

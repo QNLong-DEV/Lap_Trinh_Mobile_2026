@@ -5,3 +5,9 @@ class Book {
         public year: number
     ) { }
 }
+
+const myBook = new Book("Lập trình TypeScript", "Nguyễn Văn A", 2026);
+
+console.log(myBook.title);
+console.log(myBook.author);
+console.log(myBook.year);

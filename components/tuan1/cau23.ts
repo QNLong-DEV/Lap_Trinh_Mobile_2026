@@ -13,3 +13,8 @@ class CardPayment implements Payment {
         console.log(`Thanh toán ${amount} bằng thẻ ngân hàng.`);
     }
 }
+const cash = new CashPayment();
+cash.pay(500);
+
+const card = new CardPayment();
+card.pay(1200);

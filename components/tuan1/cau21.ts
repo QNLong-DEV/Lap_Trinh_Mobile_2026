@@ -9,3 +9,9 @@ class Repository<T> {
         return this.items;
     }
 }
+
+const repo = new Repository<string>();
+repo.add("TypeScript");
+repo.add("React Native");
+
+console.log(repo.getAll());
