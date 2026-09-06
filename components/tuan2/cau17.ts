@@ -6,8 +6,6 @@ async function simulateTask(time: Number): Promise<String> {
     })
 }
 
-
-
 const tasks = [
     simulateTask(1000),
     simulateTask(2000),
@@ -16,7 +14,7 @@ const tasks = [
 
 async function run() {
     for await (const res of tasks) {
-        alert(res)
+        console.log(res)
     }
 }
 

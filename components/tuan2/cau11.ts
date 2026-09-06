@@ -8,9 +8,8 @@ async function promise() {
 }
 
 async function result() {
-    await promise().then((resolve) => {
-        alert(resolve);
-    })
+    const message = await promise();
+    alert(message);
 }
 
 result();

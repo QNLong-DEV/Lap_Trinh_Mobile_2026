@@ -1,15 +1,15 @@
-async function simulateTask(time: Number): Promise<String> {
-    return await new Promise((resolve, reject) => {
+function simulateTask(time: number): Promise<string> {
+    return new Promise((resolve, reject) => {
         setTimeout(() => {
             resolve("Task done after " + time);
-        }, time)
-    })
+        }, time);
+    });
 }
 
 async function result() {
-    await simulateTask(5000).then((res) => {
-        alert(res);
-    })
+    const res = await simulateTask(5000); 
+    
+    alert(res);
 }
 
 result();

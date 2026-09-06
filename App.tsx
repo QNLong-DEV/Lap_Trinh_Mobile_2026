@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import './components/tuan2/cau19'
+import './components/tuan2/cau30'
 export default function App() {
   return (
     <View style={styles.container}>
