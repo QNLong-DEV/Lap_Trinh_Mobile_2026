@@ -1,4 +1,4 @@
-function promise(arrs: Number[]): Promise<Number[]> {
+function promise(arrs: number[]): Promise<number[]> {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             resolve(arrs.filter((num) => num % 2 == 0))
@@ -7,7 +7,7 @@ function promise(arrs: Number[]): Promise<Number[]> {
 }
 
 function res() {
-    let arrs: Number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    let arrs: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     promise(arrs).then((resolve) => {
         resolve.forEach((a) => {
             console.log(a);

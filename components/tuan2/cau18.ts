@@ -1,4 +1,4 @@
-async function fetchUser(id: String) {
+async function fetchUser(id: string): Promise<{ userid: string; name: string }> {
     return await new Promise((resolve, reject) => {
         if (id === "123") {
             setTimeout(() => {

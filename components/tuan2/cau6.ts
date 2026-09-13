@@ -1,4 +1,4 @@
-function simulateTask(time: Number): Promise<String> {
+function simulateTask(time: number): Promise<string> {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             resolve("Task done after " + time);
