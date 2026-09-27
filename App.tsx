@@ -1,51 +1,76 @@
-import { StatusBar } from 'expo-status-bar';
-import { Alert, ScrollView, StyleSheet, Text, View } from 'react-native';
-import HeaderBookStore from './components/tuan3/headerBookStore';
-import { BOOKS } from './data';
-import { CategoryChips } from './components/tuan3/categoryChips';
-import { BookGrid } from './components/tuan3/BookGrid';
-import { FloatingCartButton } from './components/tuan3/FloatingCartButton';
+import { useState } from 'react';
+import { Alert, StyleSheet, View } from 'react-native';
+import { BOOKS, CART_ITEMS, CartItem, Book } from './data';
+import { BookDetailScreen } from './components/tuan4/screen/BookDetailScreen';
+import { HomeScreen } from './components/tuan4/screen/HomeScreen';
+import { CartScreen } from './components/tuan4/screen/CartScreen';
+import { TabBar, TabKey } from './components/tuan4/TabBar';
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <HeaderBookStore />
+  const [selectedBook, setSelectedBook] = useState<Book | null>(null);
+  const [cartItems, setCartItems] = useState<CartItem[]>(CART_ITEMS);
+  const [activeTab, setActiveTab] = useState<TabKey>('home');
+  const cartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
-      <ScrollView contentContainerStyle={styles.listContent}>
-        <CategoryChips />
-        <Text style={styles.sectionTitle}>Lưới sách</Text>
-        <BookGrid
-          books={BOOKS}
-          onPressBook={(id) => Alert.alert('Đã chọn sách', `Mã sách: ${id}`)}
+  if (selectedBook) {
+    return (
+      <View style={styles.app}>
+        <BookDetailScreen
+          book={selectedBook}
+          onBack={() => setSelectedBook(null)}
+          onAddToCart={() => {
+            setCartItems((items) => {
+              const existingItem = items.find((item) => item.book.id === selectedBook.id);
+              if (existingItem) {
+                return items.map((item) =>
+                  item.book.id === selectedBook.id
+                    ? { ...item, quantity: item.quantity + 1 }
+                    : item,
+                );
+              }
+              return [...items, { book: selectedBook, quantity: 1 }];
+            });
+            Alert.alert('Đã thêm vào giỏ', selectedBook.title);
+          }}
         />
-      </ScrollView>
+      </View>
+    );
+  }
 
-      <FloatingCartButton
-        count={4}
-        onPress={() => Alert.alert('Giỏ hàng', 'Bạn có 4 sản phẩm trong giỏ hàng.')}
+  return (
+    <View style={styles.app}>
+      <View style={styles.content}>
+        {activeTab === 'cart' ? (
+          <CartScreen items={cartItems} />
+        ) : (
+          <HomeScreen
+            cartCount={cartCount}
+            onPressBook={(id) => {
+              const book = BOOKS.find((item) => item.id === id);
+              if (book) setSelectedBook(book);
+            }}
+            onPressCart={() => setActiveTab('cart')}
+          />
+        )}
+      </View>
+      <TabBar
+        active={activeTab}
+        onChange={(tab) => {
+          if (tab === 'home' || tab === 'cart') {
+            setActiveTab(tab);
+          }
+        }}
       />
-      <StatusBar style="auto" />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  app: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#FFFFFF',
   },
-  listContent: {
-    paddingBottom: 110,
-  },
-  sectionTitle: {
-    marginHorizontal: 16,
-    marginTop: 16,
-    marginBottom: 10,
-    color: '#1E1B4B',
-    fontSize: 18,
-    fontWeight: '700',
-  },
-  cardPreview: {
-    marginTop: 4,
+  content: {
+    flex: 1,
   },
 });
