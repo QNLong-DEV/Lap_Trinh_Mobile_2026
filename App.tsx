@@ -4,6 +4,7 @@ import { PHONES } from '../tuan1prj/components/tuan6/data/phone';
 import { SelectPhoneApi } from '../tuan1prj/components/tuan6/ex1/SelectPhoneApi';
 import { BottomTabApp } from '../tuan1prj/components/tuan6/ex3/BottomTapApp';
 import { StackTabApp } from '../tuan1prj/components/tuan6/ex4/StackTabApp';
+import { BookStoreApp } from './components/tuan9/BookStore_Buoi9_Starter/App';
 export default function App() {
-  return <StackTabApp />;
+  return <BookStoreApp />;
 }
